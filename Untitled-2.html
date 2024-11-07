@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendaciones Musicales</title>
+    <style>
+        /* Centramos el contenido en el medio de la pantalla */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s;
+        }
+
+        /* Estilos del contenedor */
+        .container {
+            text-align: center;
+        }
+
+        /* Estilo de la caja de selección */
+        select {
+            font-size: 16px;
+            padding: 10px;
+            margin-top: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilo del botón de selección */
+        .btn-ir {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #4CAF50;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        /* Efecto hover para el botón */
+        .btn-ir:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Selecciona tu estado de ánimo:</h2>
+        <select id="selectorEstado" onchange="cambiarFondo()">
+            <option value="">--Seleccionar--</option>
+            <option value="feliz">Feliz</option>
+            <option value="triste">Triste</option>
+            <option value="enojado">Enojado</option>
+            <option value="miedo">Miedo</option>
+        </select>
+        <br>
+        <button class="btn-ir" onclick="recomendarMusica()">Ir</button>
+    </div>
+
+    <script>
+        // Función para cambiar el color de fondo según el estado de ánimo seleccionado
+        function cambiarFondo() {
+            const estado = document.getElementById("selectorEstado").value;
+            switch (estado) {
+                case 'feliz':
+                    document.body.style.backgroundColor = "#FFD700"; // Dorado
+                    break;
+                case 'triste':
+                    document.body.style.backgroundColor = "#1E90FF"; // Azul
+                    break;
+                case 'enojado':
+                    document.body.style.backgroundColor = "#FF4500"; // Rojo
+                    break;
+                case 'miedo':
+                    document.body.style.backgroundColor = "#6A5ACD"; // Púrpura
+                    break;
+                default:
+                    document.body.style.backgroundColor = "#f0f0f0"; // Color de fondo por defecto
+            }
+        }
+
+        // Función para abrir un video de YouTube basado en el estado de ánimo
+        function recomendarMusica() {
+            const estado = document.getElementById("selectorEstado").value;
+            let url;
+
+            switch (estado) {
+                case 'feliz':
+                    url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Ejemplo de música alegre
+                    break;
+                case 'triste':
+                    url = "https://www.youtube.com/watch?v=l9TnDl9txe4"; // Ejemplo de música melancólica
+                    break;
+                case 'enojado':
+                    url = "https://www.youtube.com/watch?v=G8Q2PMh9P1A"; // Ejemplo de música intensa
+                    break;
+                case 'miedo':
+                    url = "https://www.youtube.com/watch?v=s9I_Z8kIm4c"; // Ejemplo de música calmante
+                    break;
+                default:
+                    alert("Por favor, selecciona un estado de ánimo.");
+                    return;
+            }
+            window.open(url, "_blank"); // Abre el video en una nueva pestaña
+        }
+    </script>
+</body>
+</html>
